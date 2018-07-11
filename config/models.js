@@ -8,6 +8,7 @@
  * For more info on Sails models, see:
  * http://sailsjs.org/#!/documentation/concepts/ORM
  */
+var uuidv4 = require('uuid/v4');
 
 module.exports.models = {
 
@@ -27,6 +28,15 @@ module.exports.models = {
   * See http://sailsjs.org/#!/documentation/concepts/ORM/model-settings.html  *
   *                                                                          *
   ***************************************************************************/
-   migrate: 'alter'
-
+   migrate: 'alter',
+   attributes:{
+    id: {
+      type: 'string',
+      unique: true,
+      primaryKey: true,
+      defaultsTo: function () {
+        return uuidv4();
+      }
+    }
+   }
 };
